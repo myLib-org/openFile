@@ -53,6 +53,8 @@ Référence Web
 =============
 
     :JSON:   https://docs.python.org/3/library/json.html#basic-usage
+    
+####
 
 """
 from __future__ import absolute_import
@@ -203,22 +205,43 @@ class C_OpenFile( object ) :
            
 ####
 
-    def f_setPrefixFN(self, v_prefix) :
+    def f_setPrefixFN(self, v_prefix, f_underscore=True) :
         """ Permet d'ajouter un préfix au nom actuel du fichier
+        
+            - La valeur de v_prefix serat ajouté avant le nom contenu dans '_v_fileName'.
+              le nouveau nom sera enregistrer dans '_v_prefix'
+              
+            - Si 'f_underscore' est vrai (valeur par défaut), un underscore serat insérer
+              entre le nom du fichier et son préfix
         """
+        if f_underscore :
+            self._v_prefix = "{}_{}".format( v_prefix, self._v_fileName )
+        else :
+            self._v_prefix = "{}{}".format( v_prefix, self._v_fileName )
+
 
 ####
 
-    def f_getprefixFN( self ) :
+    def f_getPrefixFN( self ) :
         """ Retourne le nom préfixé du fichier
         """
         return self._v_prefix
         
 ####
 
-    def f_setSuffixFN(self, v_prefix) :
+    def f_setSuffixFN(self, v_suffix, f_underscore=True) :
         """ Permet d'ajouter un suffixe au nom actuel du fichier
+        
+            - La valeur de v_suffix serat ajouté après le nom contenu dans '_v_fileName'.
+              le nouveau nom sera enregistrer dans '_v_suffix'
+              
+            - Si 'f_underscore' est vrai (valeur par défaut), un underscore serat insérer
+              entre le nom du fichier et son suffixe
         """
+        if f_underscore :
+            self._v_suffix = "{}_{}".format( self._v_fileName, v_suffix )
+        else :
+            self._v_suffix = "{}{}".format( self._v_fileName, v_suffix )
 
 ####
 
@@ -242,7 +265,8 @@ class C_OpenFile( object ) :
             - Si _v_fileName n'a pas d'extention, cette derniere sera ajouter au nom du
               fichier
               
-            - Si _v_fileName a une extension qui ne correspond pas à _v_fileExt, l'extension de _v_fileName sera modifiée
+            - Si _v_fileName a une extension qui ne correspond pas à _v_fileExt, 
+              l'extension de _v_fileName sera modifiée
         """
         ## dbg
         v_dbg = 1
@@ -271,7 +295,7 @@ class C_OpenFile( object ) :
 ####      
 
     def f_setFQFN(self) :
-        """ Permet définir le fichier et son chemin (Fully Qualified File Name) sous la
+        """ Permet de définir le fichier et son chemin (Fully Qualified File Name) sous la
             forme : ::
         
                 [chemin_du_fichier]\[nom_du_fichier]
@@ -390,7 +414,8 @@ class C_OpenFile( object ) :
                 open()
                 
             **v_dirPath** : Permet de définir le chemin dans lequel est créé le fichier.
-            Ce chemin est utilisé comme repertoire de travail (workdir). Si il est définie, la méthode 'f_setFilePath()' sera appellée.
+            Ce chemin est utilisé comme repertoire de travail (workdir). Si il est 
+            définie, la méthode 'f_setFilePath()' sera appellée.
             
             **v_fileName** : Permet de définir le nom du fichier. Si il est définie, la
             méthode 'f_setFileName()' sera appellée.
@@ -466,11 +491,19 @@ def f_dbg( v_bool, v_data, v_tittle = False  ) :
 def main() :
     """ Fonction principale 
     
-        Permet de tester les diférente méthode de la Class.
+        Permet de tester les diférentes méthode de la Class.
     """
     parser = argparse.ArgumentParser()
-    parser.add_argument( "-d", "--debug", action='store_true', help="activation du mode debug")
-    # parser.add_argument( "-t", "--test", action='store_true', help="activation du mode Test")
+    parser.add_argument(    "-d",
+                            "--debug",
+                            action='store_true',
+                            help="activation du mode debug"
+                            )
+    # parser.add_argument(  "-t",
+                            # "--test",
+                            # action='store_true',
+                            # help="activation du mode Test"
+                            # )
                         
     args = parser.parse_args()
     
