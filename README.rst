@@ -1,10 +1,12 @@
 Informations générales openFile
 ===============================
 
-   :Autheur:          `Poltergeist42 <https://github.com/poltergeist42>`_
-   :Projet:           openFile
-   :Licence:          CC BY-NC-SA 4.0
-   :Liens:            https://creativecommons.org/licenses/by-nc-sa/4.0/ 
+   :Autheur:            `Poltergeist42 <https://github.com/poltergeist42>`_
+   :Projet:             openFile
+   :dépôt GitHub:       https://github.com/poltergeist42-myLib/openFile
+   :documentation:      https://poltergeist42-mylib.github.io/openFile/
+   :Licence:            CC BY-NC-SA 4.0
+   :Liens:              https://creativecommons.org/licenses/by-nc-sa/4.0/ 
 
 ------------------------------------------------------------------------------------------
 

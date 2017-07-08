@@ -8,7 +8,8 @@ if "%SPHINXBUILD%" == "" (
 	set SPHINXBUILD=python -msphinx
 )
 set SOURCEDIR=source
-set BUILDDIR= ..\..\webDocset SPHINXPROJ=openFile
+set BUILDDIR= ..\..\webDoc
+set SPHINXPROJ=openFile
 
 if "%1" == "" goto help
 
@@ -27,7 +28,7 @@ if errorlevel 9009 (
 
 %SPHINXBUILD% -M %1 %SOURCEDIR% %BUILDDIR% %SPHINXOPTS%
 
-rem reconstruction de la branch "gh-pages" et mise a jour du depot distant
+reconstruction de la branch "gh-pages" et mise a jour du depot distant
 cd %BUILDDIR%\html
 git add .
 git commit -m "rebuilt docs"

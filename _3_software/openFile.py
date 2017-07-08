@@ -9,7 +9,7 @@ Infos
    :Projet:             openFile
    :Nom du fichier:     openFile.py
    :Autheur:            `Poltergeist42 <https://github.com/poltergeist42>`_
-   :Version:            20170701
+   :Version:            20170708
 
 ####
 
@@ -326,7 +326,7 @@ class C_OpenFile( object ) :
         v_chk = False
         for _, _, l_file in os.walk( v_path ) :
             for i in l_file :
-                if i == v_file
+                if i == v_file :
                         v_chk = True
                         ## dbg
                         f_dbg( v_dbg, v_file, v_tittle = "v_file"  )
@@ -360,7 +360,7 @@ class C_OpenFile( object ) :
         if not v_ext :
             v_ext = self._v_fileExt
         else :
-            if v_ext[0] != '.'
+            if v_ext[0] != '.' :
                 v_ext = ".{}".format(v_ext)
             
         if not v_path :
