@@ -201,6 +201,12 @@ class C_OpenFile( object ) :
     def f_getFileName(self) :
         """ Retourne le nom du fichier.
         """
+        ## dbg
+        v_dbg = 1
+        v_dbg2 = 1
+        f_dbg(v_dbg2, "f_getFileName", self.f_getFileName)
+        
+        ## Action
         return self._v_fileName
            
 ####
@@ -214,6 +220,12 @@ class C_OpenFile( object ) :
             - Si 'f_underscore' est vrai (valeur par défaut), un underscore serat insérer
               entre le nom du fichier et son préfix
         """
+        ## dbg
+        v_dbg = 1
+        v_dbg2 = 1
+        f_dbg(v_dbg2, "f_setPrefixFN", self.f_setPrefixFN)
+        
+        ## Action
         if f_underscore :
             self._v_prefix = "{}_{}".format( v_prefix, self._v_fileName )
         else :
@@ -225,6 +237,12 @@ class C_OpenFile( object ) :
     def f_getPrefixFN( self ) :
         """ Retourne le nom préfixé du fichier
         """
+        ## dbg
+        v_dbg = 1
+        v_dbg2 = 1
+        f_dbg(v_dbg2, "f_getPrefixFN", self.f_getPrefixFN)
+        
+        ## Action
         return self._v_prefix
         
 ####
@@ -238,6 +256,12 @@ class C_OpenFile( object ) :
             - Si 'f_underscore' est vrai (valeur par défaut), un underscore serat insérer
               entre le nom du fichier et son suffixe
         """
+        ## dbg
+        v_dbg = 1
+        v_dbg2 = 1
+        f_dbg(v_dbg2, "f_setSuffixFN", self.f_setSuffixFN)
+        
+        ## Action
         if f_underscore :
             self._v_suffix = "{}_{}".format( self._v_fileName, v_suffix )
         else :
@@ -248,6 +272,12 @@ class C_OpenFile( object ) :
     def f_getSuffixFN( self ) :
         """ Retourne le nom suffixé du fichier
         """
+        ## dbg
+        v_dbg = 1
+        v_dbg2 = 1
+        f_dbg(v_dbg2, "f_getSuffixFN", self.f_getSuffixFN)
+        
+        ## Action
         return self._v_suffix
         
 ####
@@ -290,6 +320,12 @@ class C_OpenFile( object ) :
     def f_getFileExt( self ) :
         """ Retourne l'extension du fichier
         """
+        ## dbg
+        v_dbg = 1
+        v_dbg2 = 1
+        f_dbg(v_dbg2, "f_getFileExt", self.f_getFileExt)
+        
+        ## Action
         return self._v_fileExt
 
 ####      
@@ -359,7 +395,7 @@ class C_OpenFile( object ) :
                         return True
             if not v_chk :
                 if __name__ == '__main__':
-                    print( "Aucun fichier de perçage n'a été trouvé" )
+                    print( "Ce fichier n'a pas été trouvé" )
                     
                 return False
 
@@ -444,6 +480,33 @@ class C_OpenFile( object ) :
         
         return self.f_getFQFN(), v_openMode
         
+####
+
+    def f_setRemove(self, v_fileName, v_path=None) :
+        """ Permet de supprimer le fichier pointer par 'v_fileName'
+        
+            - Le fichicher pointer par 'v_fileName' serat supprimé si le fichier
+              existe ( f_chkIfFile )
+        """
+        ## dbg
+        v_dbg = 1
+        v_dbg2 = 1
+        f_dbg(v_dbg2, "f_setRemove", self.f_setRemove)
+        
+        ## Action
+        if not v_path :
+            if self.f_chkIfFile(v_file=v_fileName) :
+                os.remove( v_fileName )
+            else :
+                if __name__ == '__main__':
+                    print( "Ce fichier n'a pas été trouvé" )
+        else :
+            if self.f_chkIfFile(v_filename, v_path) :
+                os.remove( "{}/{}".format(v_path, v_fileName )
+            else :
+                if __name__ == '__main__':
+                    print( "Ce fichier n'a pas été trouvé" )
+
 ####
 
     def f_makeJson(self, v_dict, v_fileObject) :
