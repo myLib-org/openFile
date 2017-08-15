@@ -9,7 +9,7 @@ Infos
    :Projet:             openFile
    :Nom du fichier:     openFile.py
    :Autheur:            `Poltergeist42 <https://github.com/poltergeist42>`_
-   :Version:            20170708
+   :Version:            20170815
 
 ####
 
@@ -487,6 +487,7 @@ class C_OpenFile( object ) :
         
             - Le fichicher pointer par 'v_fileName' serat supprimé si le fichier
               existe ( f_chkIfFile )
+              
         """
         ## dbg
         v_dbg = 1
@@ -502,11 +503,36 @@ class C_OpenFile( object ) :
                     print( "Ce fichier n'a pas été trouvé" )
         else :
             if self.f_chkIfFile(v_filename, v_path) :
-                os.remove( "{}/{}".format(v_path, v_fileName )
+                os.remove( "{}/{}".format(v_path, v_fileName ))
             else :
                 if __name__ == '__main__':
                     print( "Ce fichier n'a pas été trouvé" )
 
+####
+
+    def f_setRename( v_newFilename, v_filetoRename, v_path=None)
+        """ Permet de renomer un fichier
+        
+            - 'v_newFilename' est le nouveau nom du fichier à renomer
+            
+            - 'v_filetoRename' est le nom du fichier à renomer
+            
+            - 'v_path' permet de travailler dans un dossier différent que le répertoire local
+        """
+        if not v_path :
+            if self.f_chkIfFile(v_file=v_fileName) :
+                os.rename(v_filetoRename, v_newFilename )
+            else :
+                if __name__ == '__main__':
+                    print( "Ce fichier n'a pas été trouvé" )
+        else :
+            if self.f_chkIfFile(v_filename, v_path) :
+                v_newFilename = "{}/{}".format(v_path, v_filetoRename ))
+                os.rename(v_filetoRename, v_newFilename )
+            else :
+                if __name__ == '__main__':
+                    print( "Ce fichier n'a pas été trouvé" )
+    
 ####
 
     def f_makeJson(self, v_dict, v_fileObject) :
@@ -520,7 +546,7 @@ class C_OpenFile( object ) :
         
         ## Action
         # with open("cfg.cfg", 'w') as f :
-        json.dump(v_dict, v_fileObject,  indent=4, sort_keys=True)
+        json.dump(v_dict, v_fileObject, indent=4, sort_keys=True)
             
 ####
             
@@ -586,11 +612,11 @@ def main() :
     
     i_ist = C_OpenFile()
     fileArgs = i_ist.f_manageFile(None, fileName, 'w')
-    with open( fileArgs[0], fileArgs[1] ) as f :
+    with open( fileArgs[0], fileArgs[1], encoding = "utf-8" ) as f :
         i_ist.f_makeJson(d_monDico, f)
         
     fileArgs = i_ist.f_manageFile(None, fileName, 'r')
-    with open( fileArgs[0], fileArgs[1] ) as g :
+    with open( fileArgs[0], fileArgs[1], encoding = "utf-8" ) as g :
         d_monDico2 = i_ist.f_loadJson(g)
         
     for k, v in d_monDico2.items() :

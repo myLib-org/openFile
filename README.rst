@@ -20,7 +20,9 @@ fichier, comme le nom, l'extension, le chemin ou le mode de traitemant. Ce modul
 Arborescence du projet
 ======================
 
-Pour aider à la compréhension de mon organisation, voici un bref déscrptif de l'arborescence de se projet. Cette arborescence est à reproduire si vous récupérez ce dépôt depuis GitHub. ::
+Pour aider à la compréhension de mon organisation, voici un bref déscrptif de 
+l'arborescence de se projet. Cette arborescence est à reproduire si vous récupérez ce 
+dépôt depuis GitHub. ::
 
     openFile                 # Dossier racine du projet (non versionner)
     |
