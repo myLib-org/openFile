@@ -9,7 +9,7 @@ Infos
    :Projet:             openFile
    :Nom du fichier:     openFile.py
    :Autheur:            `Poltergeist42 <https://github.com/poltergeist42>`_
-   :Version:            20170815
+   :Version:            20170818
 
 ####
 
@@ -62,12 +62,12 @@ import os, sys
 sys.path.insert(0,'..')         # ajouter le repertoire precedent au path (non définitif)
                                 # pour pouvoir importer les modules et paquets parent
 try :
-    from devChk.devChk import C_DebugMsg
+    from devChk import C_DebugMsg
     v_dbgChk = True
     i_dbg = C_DebugMsg()
-   
 except ImportError :
-    print( "module devChk non present" )
+    if __name__ == '__main__':
+        print( "module devChk non present" )
     v_dbgChk = False
     
 import json
@@ -510,7 +510,7 @@ class C_OpenFile( object ) :
 
 ####
 
-    def f_setRename( v_newFilename, v_filetoRename, v_path=None)
+    def f_setRename( v_newFilename, v_filetoRename, v_path=None) :
         """ Permet de renomer un fichier
         
             - 'v_newFilename' est le nouveau nom du fichier à renomer
@@ -527,7 +527,7 @@ class C_OpenFile( object ) :
                     print( "Ce fichier n'a pas été trouvé" )
         else :
             if self.f_chkIfFile(v_filename, v_path) :
-                v_newFilename = "{}/{}".format(v_path, v_filetoRename ))
+                v_newFilename = "{}/{}".format(v_path, v_filetoRename )
                 os.rename(v_filetoRename, v_newFilename )
             else :
                 if __name__ == '__main__':
