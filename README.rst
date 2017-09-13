@@ -17,6 +17,21 @@ openFile.py permet créer et centraliser les données nécessaires à l'ouvertur
 fichier, comme le nom, l'extension, le chemin ou le mode de traitemant. Ce module permet
 également de travailler avec le format JSON.
 
+------------------------------------------------------------------------------------------
+
+Installation
+============
+
+ Depuis une invite de commande, ce placer dans le dossier "_3_software\openFile_pac" puis
+ excuter la commande setup : ::
+ 
+    cd .\_3_software\openFile_pac
+    python setup.py install
+    
+**N.B** : vous devez être Root / administrateur pour effectuer cette opération.
+
+------------------------------------------------------------------------------------------
+
 Arborescence du projet
 ======================
 

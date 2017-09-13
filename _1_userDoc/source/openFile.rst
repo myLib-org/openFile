@@ -1,5 +1,5 @@
 openFile
 ========
 
- .. automodule:: _3_software.openFile
+ .. automodule:: openFile_pac.openFile
     :members:
