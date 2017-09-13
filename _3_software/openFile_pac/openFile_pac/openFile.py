@@ -57,9 +57,7 @@ Référence Web
 ####
 
 """
-import os, sys
-import json
-import argparse
+import os, sys, shutil, json, argparse
 
 
 class C_OpenFile( object ) :
@@ -73,6 +71,10 @@ class C_OpenFile( object ) :
         self._v_dir             = os.getcwd()
                                 # os.getcwd() : permet de recuperer le chemin
                                 # du repertoire local
+        
+        self._v_srcFilePath         = self._v_dir
+        self._v_dstFilePath        = self._v_dir
+        
         if v_fileName :
             self._v_fileName    = v_fileName
         else :
@@ -88,8 +90,6 @@ class C_OpenFile( object ) :
         self._v_prefix          = ''
         self._v_suffix          = ''
             
-
-####
         
     def f_setFilePath(self, v_localWorkDir=None) :
         """ Permet de définir le chemin dans lequel est créé le fichier. Ce chemin est
@@ -112,7 +112,6 @@ class C_OpenFile( object ) :
                         "utilisé : \n {}".format(self._v_dir)
                         )
                 
-####
                 
     def f_getFilePath(self) :
         """ Retourne le chemin dans lequel est créer le fichier.
@@ -121,8 +120,40 @@ class C_OpenFile( object ) :
         """
         return self._v_dir
         
-####
 
+    def f_setSrcFilePath( self, v_srcFilePath=None ) :
+        """ Permet de définir un chemin d'origine """
+        if v_srcFilePath :
+            self._v_srcFilePath = os.path.normpath( v_srcFilePath )
+        else :
+            if __name__ == '__main__':
+                print   (
+                        "Acun chemin n'a été spécifié. le chemin d'origine par défaut" / "sera utilisé : \n {}".format(self._v_dir)
+                        )
+                        
+                        
+    def f_getSrcFilePat( self ) :
+        """ retourne '_v_srcFilePath' """
+        return self._v_srcFilePath
+        
+        
+    def f_setDstFilePath( self v_dstFilePath=None ) :
+        """ Permet de définir un chemin de destination """
+        if v_dstFilePath :
+            self._v_dstFilePath = os.path.normpath( v_dstFilePath )
+        else :
+            if __name__ == '__main__':
+                print   (
+                        "Acun chemin n'a été spécifié. le chemin de déstination par" /
+                        "défaut sera utilisé : \n {}".format(self._v_dir)
+                        )
+                        
+                        
+    def f_getDstFilePath( self ) :
+        """ Retourne '_v_dstFilePath' """
+        return self._v_dstFilePath
+
+        
     def f_setFileName(self, v_fileName=None) :
         """ Permet de définir le nom du fichier.
             **N.B** : Le format attendu est de type 'str'
@@ -141,14 +172,12 @@ class C_OpenFile( object ) :
             if v_fileName[-4] == '.' :
                 self.f_setFileExt( v_fileName[-4:] )
 
-####
 
     def f_getFileName(self) :
         """ Retourne le nom du fichier.
         """
         return self._v_fileName
            
-####
 
     def f_setPrefixFN(self, v_prefix, f_underscore=True) :
         """ Permet d'ajouter un préfix au nom actuel du fichier
@@ -165,14 +194,11 @@ class C_OpenFile( object ) :
             self._v_prefix = "{}{}".format( v_prefix, self._v_fileName )
 
 
-####
-
     def f_getPrefixFN( self ) :
         """ Retourne le nom préfixé du fichier
         """
         return self._v_prefix
         
-####
 
     def f_setSuffixFN(self, v_suffix, f_underscore=True) :
         """ Permet d'ajouter un suffixe au nom actuel du fichier
@@ -188,14 +214,12 @@ class C_OpenFile( object ) :
         else :
             self._v_suffix = "{}{}".format( self._v_fileName, v_suffix )
 
-####
 
     def f_getSuffixFN( self ) :
         """ Retourne le nom suffixé du fichier
         """
         return self._v_suffix
         
-####
 
     def f_setFileExt(self, v_fileExt ) :
         """ permet de modifier (ou d'ajouter) l'extention du fichier
@@ -224,14 +248,12 @@ class C_OpenFile( object ) :
             if self._v_fileName[-4:] != self._v_fileExt :
                 self._v_fileName = "{}{}".format(self._v_fileName[:-4], self._v_fileExt)
       
-####
 
     def f_getFileExt( self ) :
         """ Retourne l'extension du fichier
         """
         return self._v_fileExt
 
-####      
 
     def f_setFQFN(self) :
         """ Permet de définir le fichier et son chemin (Fully Qualified File Name) sous la
@@ -241,7 +263,6 @@ class C_OpenFile( object ) :
         """
         self._v_FQFN = os.path.join(self._v_dir, self._v_fileName)
         
-####
             
     def f_getFQFN(self) :
         """ Retourne le Nom du fichier précédé se son chemin (Fully Qualified File 
@@ -251,7 +272,6 @@ class C_OpenFile( object ) :
         """
         return self._v_FQFN
 
-####
 
     def f_chkIfFile(self, v_file=None, v_path=None) :
         """ Retourne Vrai si le fichier existe et Faux si il n'éxiste pas.
@@ -279,7 +299,6 @@ class C_OpenFile( object ) :
                     
                 return False
 
-####
 
     def f_getExtList(self, v_ext=None, v_path=None) :
         """ Retourne une liste de l'ensemble des fichiers portant l'extension 'v_ext' à
@@ -316,7 +335,6 @@ class C_OpenFile( object ) :
                     
                 return False
 
-####
 
     def f_manageFile(self, v_dirPath=None, v_fileName=None, v_openMode='r') :
         """ Retourne les argument à fournir pour la commande : ::
@@ -348,9 +366,36 @@ class C_OpenFile( object ) :
         
         return self.f_getFQFN(), v_openMode
         
-####
 
-    def f_setRemove(self, v_fileName, v_path=None) :
+    def f_copyFile( self, v_fileName=None, v_srcPath=None, v_dstPath=None ) :
+        """ Permet de copier un fichier.
+        
+            **v_fileName**  : Le nom du fichier à copier
+            **v_srcPath**   : Chemin d'oringine du fichier à copier
+            **v_dstPath     : Chemin de déstination du fichier à copier
+        """
+        if not v_fileName :
+            v_fileName = self.f_getFileName()
+        
+        if not v_srcPath :
+            v_srcPath = self.f_getSrcFilePat()
+            
+        if not v_dstPath :
+            v_dstPath = self.f_getDstFilePath()
+            
+        v_source = os.path.normpath(v_srcPath + "/" + v_fileName)
+
+        try:
+            shutil.copy2(v_source, v_dstPath)
+            
+        except shutil.Error as e:
+            print("Error: {}".format(e))
+        # eg. source or destination doesn't exist
+        except IOError as e:
+            print("Error: {}".format(e.strerror))
+
+
+    def f_removeFile(self, v_fileName, v_path=None) :
         """ Permet de supprimer le fichier pointer par 'v_fileName'
         
             - Le fichicher pointer par 'v_fileName' serat supprimé si le fichier
@@ -370,9 +415,8 @@ class C_OpenFile( object ) :
                 if __name__ == '__main__':
                     print( "Ce fichier n'a pas été trouvé" )
 
-####
 
-    def f_setRename( v_newFilename, v_filetoRename, v_path=None) :
+    def f_renameFile( v_newFilename, v_filetoRename, v_path=None) :
         """ Permet de renomer un fichier
         
             - 'v_newFilename' est le nouveau nom du fichier à renomer
@@ -395,7 +439,6 @@ class C_OpenFile( object ) :
                 if __name__ == '__main__':
                     print( "Ce fichier n'a pas été trouvé" )
     
-####
 
     def f_makeJson(self, v_dict, v_fileObject) :
         """ Permet de remplir un fichier qui a été créer au préallable avec 'open()'
@@ -403,7 +446,6 @@ class C_OpenFile( object ) :
         """
         json.dump(v_dict, v_fileObject, indent=4, sort_keys=True)
             
-####
             
     def f_loadJson(self, v_fileObject) :
         """ Retourne le contenu du fichier passer en argument. Le fichier pointer par
@@ -412,7 +454,8 @@ class C_OpenFile( object ) :
         """
         return json.load(v_fileObject)
        
-        
+####
+       
 ## Main
                         
 def main() :
