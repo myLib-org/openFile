@@ -9,7 +9,7 @@ Infos
    :Projet:             openFile
    :Nom du fichier:     openFile.py
    :Autheur:            `Poltergeist42 <https://github.com/poltergeist42>`_
-   :Version:            20170818
+   :Version:            20170913
 
 ####
 
@@ -57,19 +57,7 @@ Référence Web
 ####
 
 """
-from __future__ import absolute_import
 import os, sys
-sys.path.insert(0,'..')         # ajouter le repertoire precedent au path (non définitif)
-                                # pour pouvoir importer les modules et paquets parent
-try :
-    from devChk import C_DebugMsg
-    v_dbgChk = True
-    i_dbg = C_DebugMsg()
-except ImportError :
-    if __name__ == '__main__':
-        print( "module devChk non present" )
-    v_dbgChk = False
-    
 import json
 import argparse
 
@@ -103,31 +91,6 @@ class C_OpenFile( object ) :
 
 ####
         
-    def __del__(self) :
-        """ **__del__()**
-        
-            Permet de terminer proprement l'instance de la Class courante
-        
-            il faut utilise : ::
-            
-                del [nom_de_l'_instance]
-                
-            *N.B :* Si l'instance n'est plus utilisee, cette methode est appellee 
-            automatiquement.
-        """
-        ## dbg
-        v_dbg = 1
-        v_dbg2 = 1
-        f_dbg(v_dbg2, "__del__", self.__del__)
-        
-        ## Action
-        v_className = self.__class__.__name__
-
-        ## dbg
-        f_dbg( v_dbg, v_className, v_tittle = False  )
-        
-####
-
     def f_setFilePath(self, v_localWorkDir=None) :
         """ Permet de définir le chemin dans lequel est créé le fichier. Ce chemin est
             utilisé comme repertoire de travail (workdir).
@@ -138,12 +101,6 @@ class C_OpenFile( object ) :
             - Si un chemin absolu est passé à 'v_localWorkDir',ce dernier serat utiliser
               comme nouveau répertoire de travail (workdir)
         """
-        ## dbg
-        v_dbg = 1
-        v_dbg2 = 1
-        f_dbg(v_dbg2, "f_setFilePath", self.f_setFilePath)
-        
-        ## Action
         if v_localWorkDir :
             self._v_dir = os.path.normpath(v_localWorkDir)
             os.chdir(self._v_dir)
@@ -162,12 +119,6 @@ class C_OpenFile( object ) :
         
             **N.B** : Ce chemin correspond au répertoire de travail (workdir).
         """
-        ## dbg
-        v_dbg = 1
-        v_dbg2 = 1
-        f_dbg(v_dbg2, "f_getFilePath", self.f_getFilePath)
-        
-        ## Action
         return self._v_dir
         
 ####
@@ -182,12 +133,6 @@ class C_OpenFile( object ) :
             - Si une valeur est passée à 'v_fileName', cette denière sera utiliser comme
               nom de fichier
         """
-        ## dbg
-        v_dbg = 1
-        v_dbg2 = 1
-        f_dbg(v_dbg2, "f_setFileName", self.f_setFileName)
-        
-        ## Action
         if not v_fileName :
             if __name__ == '__main__':
                 print( "Le nom du fichier sera : {}".format(self._v_fileName))
@@ -201,12 +146,6 @@ class C_OpenFile( object ) :
     def f_getFileName(self) :
         """ Retourne le nom du fichier.
         """
-        ## dbg
-        v_dbg = 1
-        v_dbg2 = 1
-        f_dbg(v_dbg2, "f_getFileName", self.f_getFileName)
-        
-        ## Action
         return self._v_fileName
            
 ####
@@ -220,12 +159,6 @@ class C_OpenFile( object ) :
             - Si 'f_underscore' est vrai (valeur par défaut), un underscore serat insérer
               entre le nom du fichier et son préfix
         """
-        ## dbg
-        v_dbg = 1
-        v_dbg2 = 1
-        f_dbg(v_dbg2, "f_setPrefixFN", self.f_setPrefixFN)
-        
-        ## Action
         if f_underscore :
             self._v_prefix = "{}_{}".format( v_prefix, self._v_fileName )
         else :
@@ -237,12 +170,6 @@ class C_OpenFile( object ) :
     def f_getPrefixFN( self ) :
         """ Retourne le nom préfixé du fichier
         """
-        ## dbg
-        v_dbg = 1
-        v_dbg2 = 1
-        f_dbg(v_dbg2, "f_getPrefixFN", self.f_getPrefixFN)
-        
-        ## Action
         return self._v_prefix
         
 ####
@@ -256,12 +183,6 @@ class C_OpenFile( object ) :
             - Si 'f_underscore' est vrai (valeur par défaut), un underscore serat insérer
               entre le nom du fichier et son suffixe
         """
-        ## dbg
-        v_dbg = 1
-        v_dbg2 = 1
-        f_dbg(v_dbg2, "f_setSuffixFN", self.f_setSuffixFN)
-        
-        ## Action
         if f_underscore :
             self._v_suffix = "{}_{}".format( self._v_fileName, v_suffix )
         else :
@@ -272,12 +193,6 @@ class C_OpenFile( object ) :
     def f_getSuffixFN( self ) :
         """ Retourne le nom suffixé du fichier
         """
-        ## dbg
-        v_dbg = 1
-        v_dbg2 = 1
-        f_dbg(v_dbg2, "f_getSuffixFN", self.f_getSuffixFN)
-        
-        ## Action
         return self._v_suffix
         
 ####
@@ -298,12 +213,6 @@ class C_OpenFile( object ) :
             - Si _v_fileName a une extension qui ne correspond pas à _v_fileExt, 
               l'extension de _v_fileName sera modifiée
         """
-        ## dbg
-        v_dbg = 1
-        v_dbg2 = 1
-        f_dbg(v_dbg2, "f_setFileExt", self.f_setFileExt)
-        
-        ## Action
         if v_fileExt[0] == '.' :
             self._v_fileExt = v_fileExt
         else :
@@ -320,12 +229,6 @@ class C_OpenFile( object ) :
     def f_getFileExt( self ) :
         """ Retourne l'extension du fichier
         """
-        ## dbg
-        v_dbg = 1
-        v_dbg2 = 1
-        f_dbg(v_dbg2, "f_getFileExt", self.f_getFileExt)
-        
-        ## Action
         return self._v_fileExt
 
 ####      
@@ -336,12 +239,6 @@ class C_OpenFile( object ) :
         
                 [chemin_du_fichier]\[nom_du_fichier]
         """
-        ## dbg
-        v_dbg = 1
-        v_dbg2 = 1
-        f_dbg(v_dbg2, "f_setFQFN", self.f_setFQFN)
-        
-        ## Action
         self._v_FQFN = os.path.join(self._v_dir, self._v_fileName)
         
 ####
@@ -352,12 +249,6 @@ class C_OpenFile( object ) :
                 
                 [chemin_du_fichier]\[nom_du_fichier]
         """
-        ## dbg
-        v_dbg = 1
-        v_dbg2 = 1
-        f_dbg(v_dbg2, "f_getFQFN", self.f_getFQFN)
-        
-        ## Action
         return self._v_FQFN
 
 ####
@@ -371,12 +262,6 @@ class C_OpenFile( object ) :
             - Si aucun chemin n'est passé à 'v_path', c'est dans le répertoire courant
               que la recherche serat effectuée.
         """
-        ## dbg
-        v_dbg = 1
-        v_dbg2 = 1
-        f_dbg(v_dbg2, "f_chkIfFile", self.f_chkIfFile)
-        
-        ## Action
         if not v_file :
             v_file = self._v_fileName
             
@@ -387,12 +272,7 @@ class C_OpenFile( object ) :
         for _, _, l_file in os.walk( v_path ) :
             for i in l_file :
                 if i == v_file :
-                        v_chk = True
-                        ## dbg
-                        f_dbg( v_dbg, v_file, v_tittle = "v_file"  )
-                        
-                        ## Action
-                        return True
+                    return True
             if not v_chk :
                 if __name__ == '__main__':
                     print( "Ce fichier n'a pas été trouvé" )
@@ -411,12 +291,6 @@ class C_OpenFile( object ) :
             - Si aucun chemin n'est passé à 'v_path', c'est dans le répertoire courant
               que la recherche serat effectuée.
         """
-        ## dbg
-        v_dbg = 1
-        v_dbg2 = 1
-        f_dbg(v_dbg2, "f_getExtList", self.f_getExtList)
-        
-        ## Action
         if not v_ext :
             v_ext = self._v_fileExt
         else :
@@ -464,12 +338,6 @@ class C_OpenFile( object ) :
                 Ecriture    : 'w'
                 Ajout       : 'a'
         """
-        ## dbg
-        v_dbg = 1
-        v_dbg2 = 1
-        f_dbg(v_dbg2, "f_manageFile", self.f_manageFile)
-        
-        ## Action
         if v_dirPath :
             self.f_setFilePath(v_dirPath)
             
@@ -489,12 +357,6 @@ class C_OpenFile( object ) :
               existe ( f_chkIfFile )
               
         """
-        ## dbg
-        v_dbg = 1
-        v_dbg2 = 1
-        f_dbg(v_dbg2, "f_setRemove", self.f_setRemove)
-        
-        ## Action
         if not v_path :
             if self.f_chkIfFile(v_file=v_fileName) :
                 os.remove( v_fileName )
@@ -539,13 +401,6 @@ class C_OpenFile( object ) :
         """ Permet de remplir un fichier qui a été créer au préallable avec 'open()'
             avec le contenu du dictionnaire 'v_dict' formater en 'JSON'.
         """
-        ## dbg
-        v_dbg = 1
-        v_dbg2 = 1
-        f_dbg(v_dbg2, "f_makeJson", self.f_makeJson)
-        
-        ## Action
-        # with open("cfg.cfg", 'w') as f :
         json.dump(v_dict, v_fileObject, indent=4, sort_keys=True)
             
 ####
@@ -555,25 +410,8 @@ class C_OpenFile( object ) :
             'v_fileObject' devant être au format 'JSON' pour pouvoir retourner un
             dictionnaire.
         """
-        ## dbg
-        v_dbg = 1
-        v_dbg2 = 1
-        f_dbg(v_dbg2, "f_loadJson", self.f_loadJson)
-        
-        ## Action
-        # with open("cfg.cfg", 'r') as f :
         return json.load(v_fileObject)
        
-        
-## Accessoires
-            
-def f_dbg( v_bool, v_data, v_tittle = False  ) :
-    """ Fonction de traitemant du debug """
-    if v_dbgChk and v_tittle :
-        i_dbg.dbgPrint( v_bool, v_tittle, v_data )
-        
-    elif v_dbgChk and not v_tittle :
-        i_dbg.dbgDel( v_bool, v_data)
         
 ## Main
                         
@@ -583,11 +421,11 @@ def main() :
         Permet de tester les diférentes méthode de la Class.
     """
     parser = argparse.ArgumentParser()
-    parser.add_argument(    "-d",
-                            "--debug",
-                            action='store_true',
-                            help="activation du mode debug"
-                            )
+    # parser.add_argument(    "-d",
+                            # "--debug",
+                            # action='store_true',
+                            # help="activation du mode debug"
+                            # )
     # parser.add_argument(  "-t",
                             # "--test",
                             # action='store_true',
@@ -596,10 +434,6 @@ def main() :
                         
     args = parser.parse_args()
     
-    if args.debug :
-        print( "Mode Debug active" )
-        i_dbg.f_setAffichage( True )
-       
     fileName = input("Entrez le nom du fichier : ")
 
     def makeDict() :
