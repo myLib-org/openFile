@@ -383,10 +383,11 @@ class C_OpenFile( object ) :
         if not v_dstPath :
             v_dstPath = self.f_getDstFilePath()
             
-        v_source = os.path.normpath(v_srcPath + "/" + v_fileName)
+        v_src       = os.path.normpath(v_srcPath + "/" + v_fileName)
+        v_dstPath   = os.path.normpath(v_dstPath)
 
         try:
-            shutil.copy2(v_source, v_dstPath)
+            shutil.copy2(v_src, v_dstPath)
             
         except shutil.Error as e:
             print("Error: {}".format(e))
@@ -395,6 +396,35 @@ class C_OpenFile( object ) :
             print("Error: {}".format(e.strerror))
 
 
+    def f_moveFile( self, v_fileName=None, v_srcPath=None, v_dstPath=None ) :
+        """ Permet de déplacer un fichier d'un répertoire à l'autre.
+        
+            **v_fileName**  : Le nom du fichier à copier
+            **v_srcPath**   : Chemin d'oringine du fichier à copier
+            **v_dstPath     : Chemin de déstination du fichier à copier
+        """
+        if not v_fileName :
+            v_fileName = self.f_getFileName()
+        
+        if not v_srcPath :
+            v_srcPath = self.f_getSrcFilePat()
+            
+        if not v_dstPath :
+            v_dstPath = self.f_getDstFilePath()
+            
+        v_src       = os.path.normpath(v_srcPath + "/" + v_fileName)
+        v_dstPath   = os.path.normpath(v_dstPath)
+
+        try:
+            shutil.move(v_src, v_dstPath)
+            
+        except shutil.Error as e:
+            print("Error: {}".format(e))
+        # eg. source or destination doesn't exist
+        except IOError as e:
+            print("Error: {}".format(e.strerror))
+        
+            
     def f_removeFile(self, v_fileName, v_path=None) :
         """ Permet de supprimer le fichier pointer par 'v_fileName'
         
