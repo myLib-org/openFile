@@ -137,7 +137,7 @@ class C_OpenFile( object ) :
         return self._v_srcFilePath
         
         
-    def f_setDstFilePath( self v_dstFilePath=None ) :
+    def f_setDstFilePath( selfs, v_dstFilePath=None ) :
         """ Permet de définir un chemin de destination """
         if v_dstFilePath :
             self._v_dstFilePath = os.path.normpath( v_dstFilePath )
@@ -373,7 +373,7 @@ class C_OpenFile( object ) :
         
             **v_fileName**  : Le nom du fichier à copier
             **v_srcPath**   : Chemin d’origine du fichier à copier
-            **v_dstPath     : Chemin de destination du fichier à copier
+            **v_dstPath**   : Chemin de destination du fichier à copier
         """
         if v_FQFN :
             v_src = self.f_getFQFN()
@@ -407,7 +407,7 @@ class C_OpenFile( object ) :
         
             **v_fileName**  : Le nom du fichier à copier
             **v_srcPath**   : Chemin d’origine du fichier à copier
-            **v_dstPath     : Chemin de destination du fichier à copier
+            **v_dstPath**   : Chemin de destination du fichier à copier
         """
         if v_FQFN :
             v_src = self.f_getFQFN()
