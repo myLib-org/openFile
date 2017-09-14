@@ -1,20 +1,20 @@
 Informations générales openFile
 ===============================
 
-   :Autheur:            `Poltergeist42 <https://github.com/poltergeist42>`_
+   :Auteur:            `Poltergeist42 <https://github.com/poltergeist42>`_
    :Projet:             openFile
-   :dépôt GitHub:       https://github.com/poltergeist42-myLib/openFile
-   :documentation:      https://poltergeist42-mylib.github.io/openFile/
+   :Dépôt_GitHub:       https://github.com/poltergeist42-myLib/openFile
+   :Documentation:      https://poltergeist42-mylib.github.io/openFile/
    :Licence:            CC BY-NC-SA 4.0
    :Liens:              https://creativecommons.org/licenses/by-nc-sa/4.0/ 
 
 ------------------------------------------------------------------------------------------
 
-Déscription
+Description
 ===========
 
 openFile.py permet créer et centraliser les données nécessaires à l'ouverture d'un 
-fichier, comme le nom, l'extension, le chemin ou le mode de traitemant. Ce module permet
+fichier, comme le nom, l'extension, le chemin ou le mode de traitement. Ce module permet
 également de travailler avec le format JSON.
 
 ------------------------------------------------------------------------------------------
@@ -23,7 +23,7 @@ Installation
 ============
 
  Depuis une invite de commande, ce placer dans le dossier "_3_software\openFile_pac" puis
- excuter la commande setup : ::
+ exécuter la commande setup : ::
  
     cd .\_3_software\openFile_pac
     python setup.py install
@@ -43,13 +43,13 @@ dépôt depuis GitHub. ::
     |
     +--project              # (branch master) contient l'ensemble du projet en lui même
     |   |
-    |   +--_1_userDoc       # Contien toute la documentation relative au projet
+    |   +--_1_userDoc       # Contiens toute la documentation relative au projet
     |   |   |
     |   |   \--source       # Dossier réunissant les sources utilisées par Sphinx
     |   |
-    |   \--_3_software      # Contien toute la partie programmation du projet
+    |   \--_3_software      # Contiens toute la partie programmation du projet
     |
     \--webDoc               # Dossier racine de la documentation qui doit être publiée
         |
-        \--html             # (branch gh-pages) C'est dans se dosier que Sphinx vat 
+        \--html             # (branch gh-pages) C'est dans se dossier que Sphinx va 
                             # générer la documentation à publié sur internet
