@@ -58,7 +58,7 @@
 </tr>
 <tr class="field-even field"><th class="field-name">Nom du fichier:</th><td class="field-body">openFile.py</td>
 </tr>
-<tr class="field-odd field"><th class="field-name">Autheur:</th><td class="field-body"><a class="reference external" href="https://github.com/poltergeist42">Poltergeist42</a></td>
+<tr class="field-odd field"><th class="field-name">Auteur:</th><td class="field-body"><a class="reference external" href="https://github.com/poltergeist42">Poltergeist42</a></td>
 </tr>
 <tr class="field-even field"><th class="field-name">Version:</th><td class="field-body">20170913</td>
 </tr>
@@ -104,7 +104,7 @@
 </tr>
 <tr class="field-even field"><th class="field-name">Fichiers:</th><td class="field-body">openFile.py permet créer et centraliser les données nécessaires
 à l’ouverture d’un fichier, comme le nom, le chemin ou le mode
-de traitemant. Ce module permet également de travailler avec
+de traitement. Ce module permet également de travailler avec
 le format JSON.</td>
 </tr>
 </tbody>
@@ -156,17 +156,32 @@ le format JSON.</td>
 <dl class="class">
 <dt id="openFile_pac.openFile.C_OpenFile">
 <em class="property">class </em><code class="descclassname">openFile_pac.openFile.</code><code class="descname">C_OpenFile</code><span class="sig-paren">(</span><em>v_fileName=None</em><span class="sig-paren">)</span><a class="headerlink" href="#openFile_pac.openFile.C_OpenFile" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>Class permettant le traitemant des fichiers et l’encapsulation des données</p>
+<dd><p>Class permettant le traitement des fichiers et l’encapsulation des données</p>
 <dl class="method">
 <dt id="openFile_pac.openFile.C_OpenFile.f_chkIfFile">
 <code class="descname">f_chkIfFile</code><span class="sig-paren">(</span><em>v_file=None</em>, <em>v_path=None</em><span class="sig-paren">)</span><a class="headerlink" href="#openFile_pac.openFile.C_OpenFile.f_chkIfFile" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>Retourne Vrai si le fichier existe et Faux si il n’éxiste pas.</p>
+<dd><p>Retourne Vrai si le fichier existe et Faux si il n’existe pas.</p>
 <ul class="simple">
 <li>Si aucun argument n’est passé à “v_file”, c’est la valeur de _v_fileName qui
-serat utilisé par défaut.</li>
+sera utilisé par défaut.</li>
 <li>Si aucun chemin n’est passé à “v_path”, c’est dans le répertoire courant
-que la recherche serat effectuée.</li>
+que la recherche sera effectuée.</li>
 </ul>
+</dd></dl>
+
+<dl class="method">
+<dt id="openFile_pac.openFile.C_OpenFile.f_copyFile">
+<code class="descname">f_copyFile</code><span class="sig-paren">(</span><em>v_FQFN=False</em>, <em>v_fileName=None</em>, <em>v_srcPath=None</em>, <em>v_dstPath=None</em><span class="sig-paren">)</span><a class="headerlink" href="#openFile_pac.openFile.C_OpenFile.f_copyFile" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Permet de copier un fichier.</p>
+<p><strong>v_fileName</strong>  : Le nom du fichier à copier
+<strong>v_srcPath</strong>   : Chemin d’origine du fichier à copier
+<strong>v_dstPath</strong>   : Chemin de destination du fichier à copier</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="openFile_pac.openFile.C_OpenFile.f_getDstFilePath">
+<code class="descname">f_getDstFilePath</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#openFile_pac.openFile.C_OpenFile.f_getDstFilePath" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Retourne “_v_dstFilePath”</p>
 </dd></dl>
 
 <dl class="method">
@@ -176,9 +191,9 @@ que la recherche serat effectuée.</li>
 partir d’un répertoire donné</p>
 <ul class="simple">
 <li>Si aucun argument n’est passé à “v_ext”, c’est la valeur de _v_fileExt qui
-serat utilisé par défaut</li>
+sera utilisé par défaut</li>
 <li>Si aucun chemin n’est passé à “v_path”, c’est dans le répertoire courant
-que la recherche serat effectuée.</li>
+que la recherche sera effectuée.</li>
 </ul>
 </dd></dl>
 
@@ -218,6 +233,12 @@ Name).</p>
 </dd></dl>
 
 <dl class="method">
+<dt id="openFile_pac.openFile.C_OpenFile.f_getSrcFilePat">
+<code class="descname">f_getSrcFilePat</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#openFile_pac.openFile.C_OpenFile.f_getSrcFilePat" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>retourne “_v_srcFilePath”</p>
+</dd></dl>
+
+<dl class="method">
 <dt id="openFile_pac.openFile.C_OpenFile.f_getSuffixFN">
 <code class="descname">f_getSuffixFN</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#openFile_pac.openFile.C_OpenFile.f_getSuffixFN" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Retourne le nom suffixé du fichier</p>
@@ -234,7 +255,7 @@ dictionnaire.</p>
 <dl class="method">
 <dt id="openFile_pac.openFile.C_OpenFile.f_makeJson">
 <code class="descname">f_makeJson</code><span class="sig-paren">(</span><em>v_dict</em>, <em>v_fileObject</em><span class="sig-paren">)</span><a class="headerlink" href="#openFile_pac.openFile.C_OpenFile.f_makeJson" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>Permet de remplir un fichier qui a été créer au préallable avec “open()”
+<dd><p>Permet de remplir un fichier qui a été créer au préalable avec “open()”
 avec le contenu du dictionnaire “v_dict” formater en “JSON”.</p>
 </dd></dl>
 
@@ -246,10 +267,10 @@ avec le contenu du dictionnaire “v_dict” formater en “JSON”.</p>
 </pre></div>
 </div>
 <p><strong>v_dirPath</strong> : Permet de définir le chemin dans lequel est créé le fichier.
-Ce chemin est utilisé comme repertoire de travail (workdir). Si il est 
-définie, la méthode “f_setFilePath()” sera appellée.</p>
+Ce chemin est utilisé comme répertoire de travail (workdir). Si il est 
+définie, la méthode “f_setFilePath()” sera appelée.</p>
 <p><strong>v_fileName</strong> : Permet de définir le nom du fichier. Si il est définie, la
-méthode “f_setFileName()” sera appellée.</p>
+méthode “f_setFileName()” sera appelée.</p>
 <p><strong>N.B</strong> : Le format attendu est de type “str”</p>
 <p><strong>v_openMode</strong> : Permet d’ouvrir un fichier dans l’un des modes suivant :</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">Lecture</span>     <span class="p">:</span> <span class="s1">&#39;r&#39;</span>
@@ -257,6 +278,42 @@ méthode “f_setFileName()” sera appellée.</p>
 <span class="n">Ajout</span>       <span class="p">:</span> <span class="s1">&#39;a&#39;</span>
 </pre></div>
 </div>
+</dd></dl>
+
+<dl class="method">
+<dt id="openFile_pac.openFile.C_OpenFile.f_moveFile">
+<code class="descname">f_moveFile</code><span class="sig-paren">(</span><em>v_FQFN=False</em>, <em>v_fileName=None</em>, <em>v_srcPath=None</em>, <em>v_dstPath=None</em><span class="sig-paren">)</span><a class="headerlink" href="#openFile_pac.openFile.C_OpenFile.f_moveFile" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Permet de déplacer un fichier d’un répertoire à l’autre.</p>
+<p><strong>v_fileName</strong>  : Le nom du fichier à copier
+<strong>v_srcPath</strong>   : Chemin d’origine du fichier à copier
+<strong>v_dstPath</strong>   : Chemin de destination du fichier à copier</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="openFile_pac.openFile.C_OpenFile.f_removeFile">
+<code class="descname">f_removeFile</code><span class="sig-paren">(</span><em>v_fileName</em>, <em>v_path=None</em><span class="sig-paren">)</span><a class="headerlink" href="#openFile_pac.openFile.C_OpenFile.f_removeFile" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Permet de supprimer le fichier pointer par “v_fileName”</p>
+<ul class="simple">
+<li>Le fichier pointer par “v_fileName” sera supprimé si le fichier
+existe ( f_chkIfFile )</li>
+</ul>
+</dd></dl>
+
+<dl class="method">
+<dt id="openFile_pac.openFile.C_OpenFile.f_renameFile">
+<code class="descname">f_renameFile</code><span class="sig-paren">(</span><em>v_newFilename</em>, <em>v_filetoRename</em>, <em>v_path=None</em><span class="sig-paren">)</span><a class="headerlink" href="#openFile_pac.openFile.C_OpenFile.f_renameFile" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Permet de renommer un fichier</p>
+<ul class="simple">
+<li>“v_newFilename” est le nouveau nom du fichier à renommer</li>
+<li>“v_filetoRename” est le nom du fichier à renomer</li>
+<li>“v_path” permet de travailler dans un dossier différent que le répertoire local</li>
+</ul>
+</dd></dl>
+
+<dl class="method">
+<dt id="openFile_pac.openFile.C_OpenFile.f_setDstFilePath">
+<code class="descname">f_setDstFilePath</code><span class="sig-paren">(</span><em>selfs</em>, <em>v_dstFilePath=None</em><span class="sig-paren">)</span><a class="headerlink" href="#openFile_pac.openFile.C_OpenFile.f_setDstFilePath" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Permet de définir un chemin de destination</p>
 </dd></dl>
 
 <dl class="method">
@@ -272,14 +329,14 @@ forme :</p>
 <dl class="method">
 <dt id="openFile_pac.openFile.C_OpenFile.f_setFileExt">
 <code class="descname">f_setFileExt</code><span class="sig-paren">(</span><em>v_fileExt</em><span class="sig-paren">)</span><a class="headerlink" href="#openFile_pac.openFile.C_OpenFile.f_setFileExt" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>permet de modifier (ou d’ajouter) l’extention du fichier
+<dd><p>permet de modifier (ou d’ajouter) l’extension du fichier
 <strong>N.B</strong> : La valeur attendue est de type “str”</p>
 <ul class="simple">
 <li>Si le premier caractère de “v_fileExt” est un point, on utilise
 directement cette valeur</li>
 <li>Si le premier caractère de “v_fileExt” n’est pas un point, on ajoute un
 point avant la valeur passée en argument</li>
-<li>Si _v_fileName n’a pas d’extention, cette derniere sera ajouter au nom du
+<li>Si _v_fileName n’a pas d’extension, cette dernière sera ajouter au nom du
 fichier</li>
 <li>Si _v_fileName a une extension qui ne correspond pas à _v_fileExt, 
 l’extension de _v_fileName sera modifiée</li>
@@ -293,8 +350,8 @@ l’extension de _v_fileName sera modifiée</li>
 <strong>N.B</strong> : Le format attendu est de type “str”</p>
 <ul class="simple">
 <li>Si aucune valeur n’est passée à “v_fileName”, le nom par défaut du fichier
-serat : “nouveau_fichier.txt”</li>
-<li>Si une valeur est passée à “v_fileName”, cette denière sera utiliser comme
+sera : “nouveau_fichier.txt”</li>
+<li>Si une valeur est passée à “v_fileName”, cette dernière sera utiliser comme
 nom de fichier</li>
 </ul>
 </dd></dl>
@@ -303,7 +360,7 @@ nom de fichier</li>
 <dt id="openFile_pac.openFile.C_OpenFile.f_setFilePath">
 <code class="descname">f_setFilePath</code><span class="sig-paren">(</span><em>v_localWorkDir=None</em><span class="sig-paren">)</span><a class="headerlink" href="#openFile_pac.openFile.C_OpenFile.f_setFilePath" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Permet de définir le chemin dans lequel est créé le fichier. Ce chemin est
-utilisé comme repertoire de travail (workdir).</p>
+utilisé comme répertoire de travail (workdir).</p>
 <ul class="simple">
 <li>Si aucune valeur n’est passé à “v_localWorkDir”, le repertoire de travail
 restera le repertoire courant</li>
@@ -315,34 +372,19 @@ comme nouveau répertoire de travail (workdir)</li>
 <dl class="method">
 <dt id="openFile_pac.openFile.C_OpenFile.f_setPrefixFN">
 <code class="descname">f_setPrefixFN</code><span class="sig-paren">(</span><em>v_prefix</em>, <em>f_underscore=True</em><span class="sig-paren">)</span><a class="headerlink" href="#openFile_pac.openFile.C_OpenFile.f_setPrefixFN" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>Permet d’ajouter un préfix au nom actuel du fichier</p>
+<dd><p>Permet d’ajouter un préfixe au nom actuel du fichier</p>
 <ul class="simple">
-<li>La valeur de v_prefix serat ajouté avant le nom contenu dans “_v_fileName”.
+<li>La valeur de v_prefix sera ajouté avant le nom contenu dans “_v_fileName”.
 le nouveau nom sera enregistrer dans “_v_prefix”</li>
-<li>Si “f_underscore” est vrai (valeur par défaut), un underscore serat insérer
-entre le nom du fichier et son préfix</li>
+<li>Si “f_underscore” est vrai (valeur par défaut), un underscore sera insérer
+entre le nom du fichier et son préfixe</li>
 </ul>
 </dd></dl>
 
 <dl class="method">
-<dt id="openFile_pac.openFile.C_OpenFile.f_setRemove">
-<code class="descname">f_setRemove</code><span class="sig-paren">(</span><em>v_fileName</em>, <em>v_path=None</em><span class="sig-paren">)</span><a class="headerlink" href="#openFile_pac.openFile.C_OpenFile.f_setRemove" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>Permet de supprimer le fichier pointer par “v_fileName”</p>
-<ul class="simple">
-<li>Le fichicher pointer par “v_fileName” serat supprimé si le fichier
-existe ( f_chkIfFile )</li>
-</ul>
-</dd></dl>
-
-<dl class="method">
-<dt id="openFile_pac.openFile.C_OpenFile.f_setRename">
-<code class="descname">f_setRename</code><span class="sig-paren">(</span><em>v_newFilename</em>, <em>v_filetoRename</em>, <em>v_path=None</em><span class="sig-paren">)</span><a class="headerlink" href="#openFile_pac.openFile.C_OpenFile.f_setRename" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>Permet de renomer un fichier</p>
-<ul class="simple">
-<li>“v_newFilename” est le nouveau nom du fichier à renomer</li>
-<li>“v_filetoRename” est le nom du fichier à renomer</li>
-<li>“v_path” permet de travailler dans un dossier différent que le répertoire local</li>
-</ul>
+<dt id="openFile_pac.openFile.C_OpenFile.f_setSrcFilePath">
+<code class="descname">f_setSrcFilePath</code><span class="sig-paren">(</span><em>v_srcFilePath=None</em><span class="sig-paren">)</span><a class="headerlink" href="#openFile_pac.openFile.C_OpenFile.f_setSrcFilePath" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Permet de définir un chemin d’origine</p>
 </dd></dl>
 
 <dl class="method">
@@ -350,9 +392,9 @@ existe ( f_chkIfFile )</li>
 <code class="descname">f_setSuffixFN</code><span class="sig-paren">(</span><em>v_suffix</em>, <em>f_underscore=True</em><span class="sig-paren">)</span><a class="headerlink" href="#openFile_pac.openFile.C_OpenFile.f_setSuffixFN" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Permet d’ajouter un suffixe au nom actuel du fichier</p>
 <ul class="simple">
-<li>La valeur de v_suffix serat ajouté après le nom contenu dans “_v_fileName”.
+<li>La valeur de v_suffix sera ajouté après le nom contenu dans “_v_fileName”.
 le nouveau nom sera enregistrer dans “_v_suffix”</li>
-<li>Si “f_underscore” est vrai (valeur par défaut), un underscore serat insérer
+<li>Si “f_underscore” est vrai (valeur par défaut), un underscore sera insérer
 entre le nom du fichier et son suffixe</li>
 </ul>
 </dd></dl>
@@ -363,7 +405,7 @@ entre le nom du fichier et son suffixe</li>
 <dt id="openFile_pac.openFile.main">
 <code class="descclassname">openFile_pac.openFile.</code><code class="descname">main</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#openFile_pac.openFile.main" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Fonction principale</p>
-<p>Permet de tester les diférentes méthode de la Class.</p>
+<p>Permet de tester les différentes méthode de la Class.</p>
 </dd></dl>
 
 </div>
