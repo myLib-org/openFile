@@ -8,7 +8,7 @@ Infos
 
    :Projet:             openFile
    :Nom du fichier:     openFile.py
-   :Autheur:            `Poltergeist42 <https://github.com/poltergeist42>`_
+   :Auteur:            `Poltergeist42 <https://github.com/poltergeist42>`_
    :Version:            20170913
 
 ####
@@ -30,7 +30,7 @@ Descriptif
                         
     :Fichiers:          openFile.py permet créer et centraliser les données nécessaires
                         à l'ouverture d'un fichier, comme le nom, le chemin ou le mode
-                        de traitemant. Ce module permet également de travailler avec
+                        de traitement. Ce module permet également de travailler avec
                         le format JSON.
 
 ####
@@ -61,16 +61,16 @@ import os, sys, shutil, json, argparse
 
 
 class C_OpenFile( object ) :
-    """ Class permettant le traitemant des fichiers et l'encapsulation des données
+    """ Class permettant le traitement des fichiers et l'encapsulation des données
     """
     def __init__( self, v_fileName=None ) :
         """ **__init__()**
         
-            Creation et initialisation des variables globales de cette Class
+            Création et initialisation des variables globales de cette Class
         """
         self._v_dir             = os.getcwd()
-                                # os.getcwd() : permet de recuperer le chemin
-                                # du repertoire local
+                                # os.getcwd() : permet de récupérer le chemin
+                                # du répertoire local
         
         self._v_srcFilePath         = self._v_dir
         self._v_dstFilePath        = self._v_dir
@@ -93,7 +93,7 @@ class C_OpenFile( object ) :
         
     def f_setFilePath(self, v_localWorkDir=None) :
         """ Permet de définir le chemin dans lequel est créé le fichier. Ce chemin est
-            utilisé comme repertoire de travail (workdir).
+            utilisé comme répertoire de travail (workdir).
             
             - Si aucune valeur n'est passé à 'v_localWorkDir', le repertoire de travail
               restera le repertoire courant
@@ -104,11 +104,11 @@ class C_OpenFile( object ) :
         if v_localWorkDir :
             self._v_dir = os.path.normpath(v_localWorkDir)
             os.chdir(self._v_dir)
-                # permet de déclarer '_v_dir' comme répertoire courrant
+                # permet de déclarer '_v_dir' comme répertoire courant
         else :
             if __name__ == '__main__':
                 print   (
-                        "Acun chemin n'a été spécifié. le chemin par défaut sera" / 
+                        "Aucun chemin n'a été spécifié. le chemin par défaut sera" / 
                         "utilisé : \n {}".format(self._v_dir)
                         )
                 
@@ -128,7 +128,7 @@ class C_OpenFile( object ) :
         else :
             if __name__ == '__main__':
                 print   (
-                        "Acun chemin n'a été spécifié. le chemin d'origine par défaut" / "sera utilisé : \n {}".format(self._v_dir)
+                        "Aucun chemin n'a été spécifié. le chemin d'origine par défaut" / "sera utilisé : \n {}".format(self._v_dir)
                         )
                         
                         
@@ -144,7 +144,7 @@ class C_OpenFile( object ) :
         else :
             if __name__ == '__main__':
                 print   (
-                        "Acun chemin n'a été spécifié. le chemin de déstination par" /
+                        "Aucun chemin n'a été spécifié. le chemin de destination par" /
                         "défaut sera utilisé : \n {}".format(self._v_dir)
                         )
                         
@@ -159,9 +159,9 @@ class C_OpenFile( object ) :
             **N.B** : Le format attendu est de type 'str'
             
             - Si aucune valeur n'est passée à 'v_fileName', le nom par défaut du fichier
-              serat : 'nouveau_fichier.txt'
+              sera : 'nouveau_fichier.txt'
               
-            - Si une valeur est passée à 'v_fileName', cette denière sera utiliser comme
+            - Si une valeur est passée à 'v_fileName', cette dernière sera utiliser comme
               nom de fichier
         """
         if not v_fileName :
@@ -180,13 +180,13 @@ class C_OpenFile( object ) :
            
 
     def f_setPrefixFN(self, v_prefix, f_underscore=True) :
-        """ Permet d'ajouter un préfix au nom actuel du fichier
+        """ Permet d'ajouter un préfixe au nom actuel du fichier
         
-            - La valeur de v_prefix serat ajouté avant le nom contenu dans '_v_fileName'.
+            - La valeur de v_prefix sera ajouté avant le nom contenu dans '_v_fileName'.
               le nouveau nom sera enregistrer dans '_v_prefix'
               
-            - Si 'f_underscore' est vrai (valeur par défaut), un underscore serat insérer
-              entre le nom du fichier et son préfix
+            - Si 'f_underscore' est vrai (valeur par défaut), un underscore sera insérer
+              entre le nom du fichier et son préfixe
         """
         if f_underscore :
             self._v_prefix = "{}_{}".format( v_prefix, self._v_fileName )
@@ -203,10 +203,10 @@ class C_OpenFile( object ) :
     def f_setSuffixFN(self, v_suffix, f_underscore=True) :
         """ Permet d'ajouter un suffixe au nom actuel du fichier
         
-            - La valeur de v_suffix serat ajouté après le nom contenu dans '_v_fileName'.
+            - La valeur de v_suffix sera ajouté après le nom contenu dans '_v_fileName'.
               le nouveau nom sera enregistrer dans '_v_suffix'
               
-            - Si 'f_underscore' est vrai (valeur par défaut), un underscore serat insérer
+            - Si 'f_underscore' est vrai (valeur par défaut), un underscore sera insérer
               entre le nom du fichier et son suffixe
         """
         if f_underscore :
@@ -222,7 +222,7 @@ class C_OpenFile( object ) :
         
 
     def f_setFileExt(self, v_fileExt ) :
-        """ permet de modifier (ou d'ajouter) l'extention du fichier
+        """ permet de modifier (ou d'ajouter) l’extension du fichier
             **N.B** : La valeur attendue est de type 'str'
             
             - Si le premier caractère de 'v_fileExt' est un point, on utilise
@@ -231,7 +231,7 @@ class C_OpenFile( object ) :
             - Si le premier caractère de 'v_fileExt' n'est pas un point, on ajoute un
               point avant la valeur passée en argument
               
-            - Si _v_fileName n'a pas d'extention, cette derniere sera ajouter au nom du
+            - Si _v_fileName n'a pas d’extension, cette dernière sera ajouter au nom du
               fichier
               
             - Si _v_fileName a une extension qui ne correspond pas à _v_fileExt, 
@@ -274,13 +274,13 @@ class C_OpenFile( object ) :
 
 
     def f_chkIfFile(self, v_file=None, v_path=None) :
-        """ Retourne Vrai si le fichier existe et Faux si il n'éxiste pas.
+        """ Retourne Vrai si le fichier existe et Faux si il n’existe pas.
         
             - Si aucun argument n'est passé à 'v_file', c'est la valeur de _v_fileName qui
-              serat utilisé par défaut.
+              sera utilisé par défaut.
               
             - Si aucun chemin n'est passé à 'v_path', c'est dans le répertoire courant
-              que la recherche serat effectuée.
+              que la recherche sera effectuée.
         """
         if not v_file :
             v_file = self._v_fileName
@@ -305,10 +305,10 @@ class C_OpenFile( object ) :
             partir d'un répertoire donné
         
             - Si aucun argument n'est passé à 'v_ext', c'est la valeur de _v_fileExt qui
-              serat utilisé par défaut
+              sera utilisé par défaut
               
             - Si aucun chemin n'est passé à 'v_path', c'est dans le répertoire courant
-              que la recherche serat effectuée.
+              que la recherche sera effectuée.
         """
         if not v_ext :
             v_ext = self._v_fileExt
@@ -342,11 +342,11 @@ class C_OpenFile( object ) :
                 open()
                 
             **v_dirPath** : Permet de définir le chemin dans lequel est créé le fichier.
-            Ce chemin est utilisé comme repertoire de travail (workdir). Si il est 
-            définie, la méthode 'f_setFilePath()' sera appellée.
+            Ce chemin est utilisé comme répertoire de travail (workdir). Si il est 
+            définie, la méthode 'f_setFilePath()' sera appelée.
             
             **v_fileName** : Permet de définir le nom du fichier. Si il est définie, la
-            méthode 'f_setFileName()' sera appellée.
+            méthode 'f_setFileName()' sera appelée.
             
             **N.B** : Le format attendu est de type 'str'
         
@@ -367,23 +367,28 @@ class C_OpenFile( object ) :
         return self.f_getFQFN(), v_openMode
         
 
-    def f_copyFile( self, v_fileName=None, v_srcPath=None, v_dstPath=None ) :
+    def f_copyFile( self, v_FQFN=False, v_fileName=None,
+                    v_srcPath=None, v_dstPath=None ) :
         """ Permet de copier un fichier.
         
             **v_fileName**  : Le nom du fichier à copier
-            **v_srcPath**   : Chemin d'oringine du fichier à copier
-            **v_dstPath     : Chemin de déstination du fichier à copier
+            **v_srcPath**   : Chemin d’origine du fichier à copier
+            **v_dstPath     : Chemin de destination du fichier à copier
         """
-        if not v_fileName :
-            v_fileName = self.f_getFileName()
-        
-        if not v_srcPath :
-            v_srcPath = self.f_getSrcFilePat()
+        if v_FQFN :
+            v_src = self.f_getFQFN()
+        else :
+            if not v_fileName :
+                v_fileName = self.f_getFileName()
+            
+            if not v_srcPath :
+                v_srcPath = self.f_getSrcFilePat()
+            
+            v_src = os.path.normpath(v_srcPath + "/" + v_fileName)
             
         if not v_dstPath :
             v_dstPath = self.f_getDstFilePath()
             
-        v_src       = os.path.normpath(v_srcPath + "/" + v_fileName)
         v_dstPath   = os.path.normpath(v_dstPath)
 
         try:
@@ -396,25 +401,30 @@ class C_OpenFile( object ) :
             print("Error: {}".format(e.strerror))
 
 
-    def f_moveFile( self, v_fileName=None, v_srcPath=None, v_dstPath=None ) :
+    def f_moveFile( self, v_FQFN=False, v_fileName=None,
+                    v_srcPath=None, v_dstPath=None ) :
         """ Permet de déplacer un fichier d'un répertoire à l'autre.
         
             **v_fileName**  : Le nom du fichier à copier
-            **v_srcPath**   : Chemin d'oringine du fichier à copier
-            **v_dstPath     : Chemin de déstination du fichier à copier
+            **v_srcPath**   : Chemin d’origine du fichier à copier
+            **v_dstPath     : Chemin de destination du fichier à copier
         """
-        if not v_fileName :
-            v_fileName = self.f_getFileName()
-        
-        if not v_srcPath :
-            v_srcPath = self.f_getSrcFilePat()
+        if v_FQFN :
+            v_src = self.f_getFQFN()
+        else :
+            if not v_fileName :
+                v_fileName = self.f_getFileName()
+            
+            if not v_srcPath :
+                v_srcPath = self.f_getSrcFilePat()
+            
+            v_src = os.path.normpath(v_srcPath + "/" + v_fileName)
             
         if not v_dstPath :
             v_dstPath = self.f_getDstFilePath()
             
-        v_src       = os.path.normpath(v_srcPath + "/" + v_fileName)
         v_dstPath   = os.path.normpath(v_dstPath)
-
+        
         try:
             shutil.move(v_src, v_dstPath)
             
@@ -428,7 +438,7 @@ class C_OpenFile( object ) :
     def f_removeFile(self, v_fileName, v_path=None) :
         """ Permet de supprimer le fichier pointer par 'v_fileName'
         
-            - Le fichicher pointer par 'v_fileName' serat supprimé si le fichier
+            - Le fichier pointer par 'v_fileName' sera supprimé si le fichier
               existe ( f_chkIfFile )
               
         """
@@ -447,9 +457,9 @@ class C_OpenFile( object ) :
 
 
     def f_renameFile( v_newFilename, v_filetoRename, v_path=None) :
-        """ Permet de renomer un fichier
+        """ Permet de renommer un fichier
         
-            - 'v_newFilename' est le nouveau nom du fichier à renomer
+            - 'v_newFilename' est le nouveau nom du fichier à renommer
             
             - 'v_filetoRename' est le nom du fichier à renomer
             
@@ -471,7 +481,7 @@ class C_OpenFile( object ) :
     
 
     def f_makeJson(self, v_dict, v_fileObject) :
-        """ Permet de remplir un fichier qui a été créer au préallable avec 'open()'
+        """ Permet de remplir un fichier qui a été créer au préalable avec 'open()'
             avec le contenu du dictionnaire 'v_dict' formater en 'JSON'.
         """
         json.dump(v_dict, v_fileObject, indent=4, sort_keys=True)
@@ -491,7 +501,7 @@ class C_OpenFile( object ) :
 def main() :
     """ Fonction principale 
     
-        Permet de tester les diférentes méthode de la Class.
+        Permet de tester les différentes méthode de la Class.
     """
     parser = argparse.ArgumentParser()
     # parser.add_argument(    "-d",
@@ -531,7 +541,7 @@ def main() :
         for kk, vv in v.items() :
             print("{} - {}".format(vv, type(vv)))
 
-    print("\n\n\t\t fin de la sequence ")    
+    print("\n\n\t\t fin de la séquence ")    
 
 if __name__ == '__main__':
     main()

@@ -6,4 +6,4 @@
     permet également de travailler avec le format JSON.
 """
 
-__version__ = "20170818"
+__version__ = "20170913"
